@@ -6,6 +6,8 @@
 
 The MercedUI Library creates some basic web components for assembling a userUI and some helper functions to help in creating a UI without having to increase your bundlesize by bringing a large UI library like Angular and React.
 
+CDN Link: http://www.alexmercedcoder.com/UI.js
+
 ## Functions
 
 ### mapToDom
