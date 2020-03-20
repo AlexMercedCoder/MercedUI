@@ -57,7 +57,11 @@ const addOne = () => {
 
 ## Components
 
-### <merced-container></merced-container>
+### MercedContainer
+
+```
+<merced-container></merced-container>
+```
 
 creates a div with the following default styles:
 
@@ -74,7 +78,11 @@ can pass in the following properties:
 -   align: sets the align-items style property
 -   height: sets the height style property
 
-### <merced-card></merced-card>
+### MercedCard
+
+```
+<merced-card></merced-card>
+```
 
 creates a div with the following default styles:
 
