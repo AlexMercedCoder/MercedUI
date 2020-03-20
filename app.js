@@ -1,3 +1,9 @@
+makeComponent({
+    prefix: 'test',
+    name: 'comp',
+    template: '<h1>Hello World</h1>'
+});
+
 const myData = ['hello', 'goodbye', 'farewell'];
 
 const container = document.getElementById('container');

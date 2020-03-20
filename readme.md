@@ -86,6 +86,39 @@ const rotate = createRotator(rotations, rotator)
 _mapToString(array, mapFunction)_
 Takes an array, maps a function that returns a string over its elements concatenating all the returned strings and returns the resulting string. This is particularly useful for generating strings to be used in your rotator properties.
 
+### makeComponent
+
+_makeComponent({options})_
+Pass an object with all the options in to generate a component.
+
+#### Option properties
+
+-   prefix: the first part of the components components name
+-   name: the second part of the components name
+-   template: a string with the html to be outputted whenever the tag is used
+-   connected: string for code to be run when the component is mounted
+-   observe: string to ObservedAttributes to constructor
+-   other: string to define methods or make use of attributeChangedCallback, disconnectedCallback or adoptedCallback
+
+Defining a component
+
+```
+makeComponent({
+    prefix: 'test',
+    name: 'comp',
+    template: '<h1>Hello World</h1>'
+});
+
+```
+
+using the component
+
+```
+<test-comp></test-comp>
+``
+
+
+
 ## Components
 
 #### All Components have toggle() to toggle the display of the component
@@ -93,16 +126,20 @@ Takes an array, maps a function that returns a string over its elements concaten
 ### MercedContainer
 
 ```
+
 <merced-container></merced-container>
+
 ```
 
 creates a div with the following default styles:
 
 ```
+
 display: flex;
 width: 90%;
 flex-wrap: wrap;
 margin: 20px auto;
+
 ```
 
 can pass in the following properties:
@@ -114,17 +151,21 @@ can pass in the following properties:
 ### MercedCard
 
 ```
+
 <merced-card></merced-card>
+
 ```
 
 creates a div with the following default styles:
 
 ```
+
 display: flex;
 width: 300px;
 flex-direction: column;
 flex-wrap: wrap;
 margin: 20px auto;
+
 ```
 
 can pass in the following properties:
@@ -133,3 +174,4 @@ can pass in the following properties:
 -   align: sets the align-items style property
 -   height: sets the height style property
 -   theBorder: sets the border style property
+```

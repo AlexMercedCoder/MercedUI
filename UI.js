@@ -144,3 +144,31 @@ const mapToString = (arr, callback, element) => {
     }
     return html;
 };
+
+////////////////////////
+//makeComponent
+///////////////////////
+
+const makeComponent = (options) => {
+    const string = `const compTemplate = document.createElement('template');
+
+  compTemplate.innerHTML = "${options.template}";
+
+  class ${options.prefix}${options.name} extends HTMLElement {
+      constructor() {
+          super();
+          ${options.observe}
+          this.attachShadow({ mode: 'open' });
+      }
+      connectedCallback() {
+          this.shadowRoot.appendChild(compTemplate.content.cloneNode(true));
+          ${options.connected}
+      }
+
+      ${options.other}
+
+  }
+
+  window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
+    eval(string);
+};
