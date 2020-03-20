@@ -34,6 +34,27 @@ mapToDom(
 _bindData(arr, mapFunction, targetElement)_
 This function is a wrapper around mapToDom, it returns a function to change the array data and then re-run the mapToDom function to auto re-render when the data changes using the returned function.
 
+```
+const myData = ['hello', 'goodbye', 'farewell'];
+
+const container = document.getElementById('container');
+
+const updateCards = bindData(
+    myData,
+    (value, index) => {
+        return `
+  <merced-card theBorder="3px solid black">${value} is at index ${index}</merced-card>
+  `;
+    },
+    container
+);
+
+const addOne = () => {
+    myData.push('one');
+    updateCards(myData);
+};
+```
+
 ## Components
 
 ### <merced-container></merced-container>
