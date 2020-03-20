@@ -115,9 +115,7 @@ using the component
 
 ```
 <test-comp></test-comp>
-``
-
-
+```
 
 ## Components
 
@@ -174,4 +172,7 @@ can pass in the following properties:
 -   align: sets the align-items style property
 -   height: sets the height style property
 -   theBorder: sets the border style property
+
+```
+
 ```
