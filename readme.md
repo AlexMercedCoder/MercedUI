@@ -57,7 +57,38 @@ const addOne = () => {
 };
 ```
 
+### createRotator
+
+createRotator(object, elementToRenderTo)
+Pass in an object where each property is a string of html and the dom element to connect to. It returns a function that will allow you to rotate between these properties.
+
+```
+const rotator = document.getElementById('rot')
+
+const rotations = {
+  first: `<h1>Hello World</h1>`,
+  second: `<h1>Hello World 2</h1>`,
+  third: `<h1>Hello World 3</h1>`
+}
+
+const rotate = createRotator(rotations, rotator)
+```
+
+```
+<div id="rot"></div>
+<button onclick="rotate('first')">First</button>
+<button onclick="rotate('second')">Second</button>
+<button onclick="rotate('third')">Third</button>
+```
+
+### mapToString
+
+_mapToString(array, mapFunction)_
+Takes an array, maps a function that returns a string over its elements concatenating all the returned strings and returns the resulting string. This is particularly useful for generating strings to be used in your rotator properties.
+
 ## Components
+
+#### All Components have toggle() to toggle the display of the component
 
 ### MercedContainer
 

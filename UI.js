@@ -36,6 +36,15 @@ class MercedContainer extends HTMLElement {
         theDiv.style.alignItems = this.getAttribute('align');
         theDiv.style.height = this.getAttribute('height');
     }
+
+    toggle() {
+        const theDiv = this.shadowRoot.getElementById('cont');
+        if (theDiv.style.display === 'flex') {
+            theDiv.style.display = 'none';
+        } else {
+            theDiv.style.display = 'flex';
+        }
+    }
 }
 
 window.customElements.define('merced-container', MercedContainer);
@@ -76,6 +85,15 @@ class MercedCard extends HTMLElement {
         theDiv.style.height = this.getAttribute('height');
         theDiv.style.border = this.getAttribute('theBorder');
     }
+
+    toggle() {
+        const theDiv = this.shadowRoot.getElementById('card');
+        if (theDiv.style.display === 'flex') {
+            theDiv.style.display = 'none';
+        } else {
+            theDiv.style.display = 'flex';
+        }
+    }
 }
 
 window.customElements.define('merced-card', MercedCard);
@@ -103,4 +121,26 @@ const bindData = (arr, callback, element) => {
         myData = newArr;
         mapToDom(myData, callback, element);
     };
+};
+
+////////////////////////
+//createRotator
+///////////////////////
+
+const createRotator = (object, element) => {
+    return (string) => {
+        element.innerHTML = object[string];
+    };
+};
+
+////////////////////////
+//mapToString Function
+///////////////////////
+
+const mapToString = (arr, callback, element) => {
+    let html = '';
+    for (index = 0; index < arr.length; index++) {
+        html = html + callback(arr[index], index);
+    }
+    return html;
 };
