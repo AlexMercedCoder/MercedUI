@@ -172,3 +172,23 @@ const makeComponent = (options) => {
   window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
     eval(string);
 };
+
+////////////////////////////
+// SiteBuilder
+////////////////////////////
+
+class SiteBuilder {
+    constructor(target, store, builder) {
+        this.target = target;
+        this.store = store;
+        this.template = builder(store);
+        this.builder = builder;
+        target.innerHTML = this.template;
+    }
+
+    updateStore(newStore) {
+        this.store = newStore;
+        this.template = this.builder(this.store);
+        target.innerHTML = this.template;
+    }
+}

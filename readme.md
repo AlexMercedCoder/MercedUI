@@ -8,6 +8,35 @@ The MercedUI Library creates some basic web components for assembling a userUI a
 
 CDN Link: http://www.alexmercedcoder.com/UI.js
 
+## Classes
+
+### SiteBuilder
+
+A class to encapsulate reactive data and templates
+
+The constructor takes three arguments:
+
+-   DOM element to apply template to (assigns template to innerHTML)
+-   store, reactive data, most useful as an object with properties
+-   builder, a function that takes the store as an argument and returns a template string
+
+```
+const target = document.getElementById('test');
+const builder = (store) => {
+    return `<h1>${store.hello}</h1>`;
+};
+
+const test = new SiteBuilder(target, { hello: 'Hello World' }, builder);
+```
+
+SiteBuilder has one method, updateData, which takes one argument which becomes the new store and triggers a re-rendering of the template.
+
+```
+const goodbye = () => {
+    test.updateStore({ hello: 'goodbye' });
+};
+```
+
 ## Functions
 
 ### mapToDom

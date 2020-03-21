@@ -1,35 +1,10 @@
-makeComponent({
-    prefix: 'test',
-    name: 'comp',
-    template: '<h1>Hello World</h1>'
-});
-
-const myData = ['hello', 'goodbye', 'farewell'];
-
-const container = document.getElementById('container');
-
-const updateCards = bindData(
-    myData,
-    (value, index) => {
-        return `
-  <merced-card theBorder="3px solid black">${value} is at index ${index}</merced-card>
-  `;
-    },
-    container
-);
-
-const addOne = () => {
-    myData.push('one');
-    updateCards(myData);
-    container.toggle();
+const target = document.getElementById('test');
+const builder = (store) => {
+    return `<h1>${store.hello}</h1>`;
 };
 
-const rotator = document.getElementById('rot');
+const test = new SiteBuilder(target, { hello: 'Hello World' }, builder);
 
-const rotations = {
-    first: `<h1>Hello World</h1>`,
-    second: `<h1>Hello World 2</h1>`,
-    third: `<h1>Hello World 3</h1>`
+const goodbye = () => {
+    test.updateStore({ hello: 'goodbye' });
 };
-
-const rotate = createRotator(rotations, rotator);
