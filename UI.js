@@ -192,3 +192,29 @@ class SiteBuilder {
         target.innerHTML = this.template;
     }
 }
+
+////////////////////////
+//makeComponent
+///////////////////////
+
+const makeLiveComponent = (options) => {
+    const string = `
+  class ${options.prefix}${options.name} extends HTMLElement {
+      constructor() {
+          super();
+          ${options.observe}
+          this.attachShadow({ mode: 'open' });
+          this.life = new SiteBuilder(this.shadowRoot, ${options.store}, ${options.builder} )
+      }
+      connectedCallback() {
+          ${options.connected}
+      }
+
+      ${options.other}
+
+  }
+
+  window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
+    console.log(string);
+    eval(string);
+};

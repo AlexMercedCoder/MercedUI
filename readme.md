@@ -39,6 +39,76 @@ const goodbye = () => {
 
 ## Functions
 
+### makeComponent
+
+_makeComponent({options})_
+Pass an object with all the options in to generate a component.
+
+#### Option properties
+
+-   prefix: the first part of the components components name
+-   name: the second part of the components name
+-   template: a string with the html to be outputted whenever the tag is used
+-   connected: string for code to be run when the component is mounted
+-   observe: string to ObservedAttributes to constructor
+-   other: string to define methods or make use of attributeChangedCallback, disconnectedCallback or adoptedCallback
+
+Defining a component
+
+```
+makeComponent({
+    prefix: 'test',
+    name: 'comp',
+    template: '<h1>Hello World</h1>'
+});
+
+```
+
+using the component
+
+```
+<test-comp></test-comp>
+```
+
+### makeComponent
+
+_makeLiveComponent({options})_
+Pass an object with all the options in to generate a component with reactive data.
+
+#### Option properties
+
+-   prefix: the first part of the components components name
+-   name: the second part of the components name
+-   builder: function that is passed the store object and rendered to dom
+-   store: Object with data the template depends on, initially passed in as a string
+-   connected: string for code to be run when the component is mounted
+-   observe: string to ObservedAttributes to constructor
+-   other: string to define methods or make use of attributeChangedCallback, disconnectedCallback or adoptedCallback
+
+Defining a component
+
+```
+const builder = (store) => {
+    return `<h1>${store.hello}</h1>`;
+};
+
+makeLiveComponent({
+    prefix: 'test',
+    name: 'life',
+    builder,
+    store: `{ hello: 'Hello World' }`
+});
+
+```
+
+using the component
+
+```
+<test-life></test-life>
+```
+
+The way this works is an instance of the SiteBuilder class is in the properties of the element, so if you need to update the store just use the function this.life.updateStore({newstore}) and it will update the store and re-render the template.
+
 ### mapToDom
 
 _mapToDom(array, mapFunction, targetElement)_
@@ -114,37 +184,6 @@ const rotate = createRotator(rotations, rotator)
 
 _mapToString(array, mapFunction)_
 Takes an array, maps a function that returns a string over its elements concatenating all the returned strings and returns the resulting string. This is particularly useful for generating strings to be used in your rotator properties.
-
-### makeComponent
-
-_makeComponent({options})_
-Pass an object with all the options in to generate a component.
-
-#### Option properties
-
--   prefix: the first part of the components components name
--   name: the second part of the components name
--   template: a string with the html to be outputted whenever the tag is used
--   connected: string for code to be run when the component is mounted
--   observe: string to ObservedAttributes to constructor
--   other: string to define methods or make use of attributeChangedCallback, disconnectedCallback or adoptedCallback
-
-Defining a component
-
-```
-makeComponent({
-    prefix: 'test',
-    name: 'comp',
-    template: '<h1>Hello World</h1>'
-});
-
-```
-
-using the component
-
-```
-<test-comp></test-comp>
-```
 
 ## Components
 

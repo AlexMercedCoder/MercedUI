@@ -8,3 +8,10 @@ const test = new SiteBuilder(target, { hello: 'Hello World' }, builder);
 const goodbye = () => {
     test.updateStore({ hello: 'goodbye' });
 };
+
+makeLiveComponent({
+    prefix: 'test',
+    name: 'life',
+    builder,
+    store: `{ hello: 'Hello World' }`
+});
