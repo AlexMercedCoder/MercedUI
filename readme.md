@@ -109,6 +109,11 @@ using the component
 
 The way this works is an instance of the SiteBuilder class is in the properties of the element, so if you need to update the store just use the function this.life.updateStore({newstore}) and it will update the store and re-render the template.
 
+### captureProps
+
+_captureProps(element)_
+Pass in any html element and this function returns all of its properties as an object.
+
 ### mapToDom
 
 _mapToDom(array, mapFunction, targetElement)_

@@ -173,6 +173,19 @@ const makeComponent = (options) => {
     eval(string);
 };
 
+////////////////////////
+//capture props
+///////////////////////
+
+const captureProps = (element) => {
+    const att = [...element.attributes];
+    const entries = att.map((value) => {
+        return [value.name, value.value];
+    });
+
+    return Object.fromEntries(entries);
+};
+
 ////////////////////////////
 // SiteBuilder
 ////////////////////////////
@@ -189,7 +202,7 @@ class SiteBuilder {
     updateStore(newStore) {
         this.store = newStore;
         this.template = this.builder(this.store);
-        target.innerHTML = this.template;
+        this.target.innerHTML = this.template;
     }
 }
 
