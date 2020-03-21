@@ -137,7 +137,7 @@ const createRotator = (object, element) => {
 //mapToString Function
 ///////////////////////
 
-const mapToString = (arr, callback) => {
+const mapToString = (arr, callback, element) => {
     let html = '';
     for (index = 0; index < arr.length; index++) {
         html = html + callback(arr[index], index);
@@ -266,3 +266,15 @@ class FormTool {
         });
     }
 }
+
+module.exports = {
+    mapToDom,
+    mapToString,
+    bindData,
+    FormTool,
+    SiteBuilder,
+    createRotator,
+    makeComponent,
+    makeLiveComponent,
+    captureProps
+};
