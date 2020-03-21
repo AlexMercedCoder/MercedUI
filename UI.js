@@ -207,7 +207,7 @@ class SiteBuilder {
 }
 
 ////////////////////////
-//makeComponent
+//makeLiveComponent
 ///////////////////////
 
 const makeLiveComponent = (options) => {
@@ -231,3 +231,38 @@ const makeLiveComponent = (options) => {
     console.log(string);
     eval(string);
 };
+
+////////////////////////////
+// FormTool
+////////////////////////////
+
+class FormTool {
+    constructor(form) {
+        this.form = form;
+    }
+
+    grabValues() {
+        const fields = [...this.form.children].filter((value) => {
+            return (
+                (value.tagName === 'INPUT' || value.tagName === 'TEXTAREA') &&
+                value.type != 'submit'
+            );
+        });
+        const entries = fields.map((value) => {
+            return [value.name, value.value];
+        });
+        return Object.fromEntries(entries);
+    }
+
+    clearForm() {
+        const fields = [...this.form.children].filter((value) => {
+            return (
+                (value.tagName === 'INPUT' || value.tagName === 'TEXTAREA') &&
+                value.type != 'submit'
+            );
+        });
+        const entries = fields.forEach((value) => {
+            value.value = null;
+        });
+    }
+}

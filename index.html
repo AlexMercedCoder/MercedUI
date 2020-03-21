@@ -7,9 +7,14 @@
         <script src="app.js" charset="utf-8" defer></script>
     </head>
     <body>
-        <div id="test" hello="Hello World"></div>
-        <button onclick="goodbye()">Click Me</button>
-        <test-life id="liveComp" cheese="5" hello="hello world"></test-life>
-        <button onclick="goodbye2()">Click Me</button>
+        <form id="myform">
+            <input type="text" name="one" />
+            <input type="text" name="two" />
+            <input type="text" name="three" />
+            <textarea name="four"></textarea>
+            <input type="submit" name="five" value="submit" />
+        </form>
+        <button onclick="console.log(testForm.grabValues())">Form Data</button>
+        <button onclick="testForm.clearForm()">Clear Values</button>
     </body>
 </html>

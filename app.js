@@ -20,3 +20,7 @@ makeLiveComponent({
     builder,
     store: `{ hello: 'Hello World' }`
 });
+
+const form = document.querySelector('form');
+console.log(form.children);
+const testForm = new FormTool(form);

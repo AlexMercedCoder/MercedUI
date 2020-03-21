@@ -37,6 +37,29 @@ const goodbye = () => {
 };
 ```
 
+### FormTool
+
+This is a class whose constructor takes a form element and allows you to grab the form data and clear the form with each.
+
+```
+const form = document.querySelector('form');
+
+const testForm = new FormTool(form);
+```
+
+```
+<form id="myform">
+    <input type="text" name="one" />
+    <input type="text" name="two" />
+    <input type="text" name="three" />
+    <textarea name="four"></textarea>
+</form>
+<button onclick="console.log(testForm.grabValues())">Form Data</button>
+<button onclick="testForm.clearForm()">Clear Values</button>
+```
+
+FormTool has two methods, grabValues() which will return you an object with the forms values using the name property as the key and the value property as the value. The second method is clearForm which will render the property of value of all form elements to null. Won't grab or clear the value on submit inputs but will for all others.
+
 ## Functions
 
 ### makeComponent
