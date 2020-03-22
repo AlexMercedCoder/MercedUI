@@ -64,6 +64,26 @@ FormTool has two methods, grabValues() which will return you an object with the 
 
 ## Functions
 
+### getQueryHash
+
+_getQueryHash()_
+This function will return an array, the first element being an object with all URL queries, the second being any URL hashes that may exist.
+
+```
+const [queries, hash] = getQueryHash()
+```
+
+### MUIRequest
+
+_MUIRequest(url, configObject)_
+This is a really simple abstraction over the fetch API, just helps you skip the stop of having to turn your response back into an object. The goal was just to save you the trouble of loading other AJAX libraries like Axios to keep your bundleSize small.
+
+```
+MUIRequest('https://jsonplaceholder.typicode.com/posts/1').then((response) =>
+    console.log(response)
+);
+```
+
 ### makeComponent
 
 _makeComponent({options})_

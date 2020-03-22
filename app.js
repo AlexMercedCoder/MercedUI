@@ -17,3 +17,11 @@ makeComponent({
 });
 
 const rotator = createCompRotator(document.querySelector('div'));
+
+const [queries, hash] = getQueryHash();
+
+console.log(queries, hash);
+
+MUIRequest('https://jsonplaceholder.typicode.com/posts/1').then((response) =>
+    console.log(response)
+);

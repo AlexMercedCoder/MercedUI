@@ -279,6 +279,35 @@ class FormTool {
     }
 }
 
+////////////////////////////
+// getQueryHash
+////////////////////////////
+
+const getQueryHash = () => {
+    const hash = window.location.href.split('#')[1];
+
+    const queryArray1 = window.location.href
+        .split('?')[1]
+        .split('#')[0]
+        .split('&');
+
+    const queryEntries = queryArray1.map((value) => {
+        return value.split('=');
+    });
+
+    return [Object.fromEntries(queryEntries), hash];
+};
+
+////////////////////////////
+// MUIRequest
+////////////////////////////
+
+const MUIRequest = async (url, object) => {
+    const response = await fetch(url, object);
+    const json = await response.json();
+    return await json;
+};
+
 module.exports = {
     mapToDom,
     mapToString,
@@ -290,5 +319,7 @@ module.exports = {
     makeLiveComponent,
     captureProps,
     createBuildRotator,
-    createCompRotator
+    createCompRotator,
+    getQueryHash,
+    MUIRequest
 };
