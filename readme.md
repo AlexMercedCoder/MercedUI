@@ -43,6 +43,12 @@ const goodbye = () => {
 
 This is a class whose constructor takes a form element and allows you to grab the form data and clear the form with each.
 
+**this.grabValues()** returns object with form values with name property as keys
+
+**this.clearForm()** clears all form Values
+
+**this.fillFields(object)** takes object fills in the form fields where key matches input name property
+
 ```
 const form = document.querySelector('form');
 

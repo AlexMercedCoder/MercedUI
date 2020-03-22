@@ -240,7 +240,6 @@ const makeLiveComponent = (options) => {
   }
 
   window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
-    console.log(string);
     eval(string);
 };
 
@@ -251,29 +250,35 @@ const makeLiveComponent = (options) => {
 class FormTool {
     constructor(form) {
         this.form = form;
-    }
-
-    grabValues() {
-        const fields = [...this.form.children].filter((value) => {
+        this.fields = [...this.form.children].filter((value) => {
             return (
                 (value.tagName === 'INPUT' || value.tagName === 'TEXTAREA') &&
                 value.type != 'submit'
             );
         });
-        const entries = fields.map((value) => {
+    }
+
+    grabValues() {
+        const entries = this.fields.map((value) => {
             return [value.name, value.value];
         });
         return Object.fromEntries(entries);
     }
 
-    clearForm() {
-        const fields = [...this.form.children].filter((value) => {
-            return (
-                (value.tagName === 'INPUT' || value.tagName === 'TEXTAREA') &&
-                value.type != 'submit'
-            );
+    fillFields(object) {
+        const keys = Object.keys(object);
+        const values = Object.values(object);
+        keys.forEach((key) => {
+            this.fields.forEach((field) => {
+                if (field.name === key) {
+                    field.value = object[key];
+                }
+            });
         });
-        const entries = fields.forEach((value) => {
+    }
+
+    clearForm() {
+        const entries = this.fields.forEach((value) => {
             value.value = null;
         });
     }
