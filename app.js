@@ -1,16 +1,19 @@
-const build1 = (store) => {
-    return `<h1>${store.hello}</h1>`;
-};
+makeComponent({
+    prefix: 'test',
+    name: 'one',
+    template: `<h1>One</h1>`
+});
 
-const build2 = (store) => {
-    return `<h2>${store.hello}</h2>`;
-};
+makeComponent({
+    prefix: 'test',
+    name: 'two',
+    template: `<h1>Two</h1>`
+});
 
-const build3 = (store) => {
-    return `<h3>${store.hello}</h3>`;
-};
+makeComponent({
+    prefix: 'test',
+    name: 'three',
+    template: `<h1>Three</h1>`
+});
 
-const rotator = createBuildRotator(
-    { build1, build2, build3 },
-    document.querySelector('div')
-);
+const rotator = createCompRotator(document.querySelector('div'));

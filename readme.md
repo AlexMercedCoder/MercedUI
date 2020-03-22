@@ -193,6 +193,8 @@ Pass in an object where each property is a string of html and the dom element to
 
 **createBuildRotator works the same way but instead of templates the object should be made up of builder functions, and a second argument should passed to the rotator with a store object with any data used for rendering.**
 
+**createCompRotator only takes one argument (elementToRenderTo) and returns as functions that takes two arguments, first being a string with the name of the component to render and string with attributes to add to the component.**
+
 ```
 const rotator = document.getElementById('rot')
 

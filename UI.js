@@ -139,6 +139,12 @@ const createBuildRotator = (object, element) => {
     };
 };
 
+const createCompRotator = (element) => {
+    return (component, attributes) => {
+        element.innerHTML = `<${component} ${attributes}></${component}>`;
+    };
+};
+
 ////////////////////////
 //mapToString Function
 ///////////////////////
