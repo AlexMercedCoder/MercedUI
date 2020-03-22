@@ -191,6 +191,8 @@ const addOne = () => {
 createRotator(object, elementToRenderTo)
 Pass in an object where each property is a string of html and the dom element to connect to. It returns a function that will allow you to rotate between these properties.
 
+**createBuildRotator works the same way but instead of templates the object should be made up of builder functions, and a second argument should passed to the rotator with a store object with any data used for rendering.**
+
 ```
 const rotator = document.getElementById('rot')
 

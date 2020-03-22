@@ -7,14 +7,9 @@
         <script src="app.js" charset="utf-8" defer></script>
     </head>
     <body>
-        <form id="myform">
-            <input type="text" name="one" />
-            <input type="text" name="two" />
-            <input type="text" name="three" />
-            <textarea name="four"></textarea>
-            <input type="submit" name="five" value="submit" />
-        </form>
-        <button onclick="console.log(testForm.grabValues())">Form Data</button>
-        <button onclick="testForm.clearForm()">Clear Values</button>
+        <div></div>
+        <button onclick="rotator('build1', {hello: 'hello world'})">1</button>
+        <button onclick="rotator('build2', {hello: 'hello world'})">2</button>
+        <button onclick="rotator('build3', {hello: 'hello world'})">3</button>
     </body>
 </html>

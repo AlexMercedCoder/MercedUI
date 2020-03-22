@@ -1,26 +1,16 @@
-const target = document.getElementById('test');
-const builder = (store) => {
-    const props = captureProps(this);
-    return `<h1>${props.hello}</h1>`;
+const build1 = (store) => {
+    return `<h1>${store.hello}</h1>`;
 };
 
-// const test = new SiteBuilder(target, { hello: 'Hello World' }, builder);
-//
-// const goodbye = () => {
-//     test.updateStore({ hello: 'goodbye' });
-// };
-
-const goodbye2 = () => {
-    document.getElementById('liveComp').life.updateStore({ hello: 'goodbye' });
+const build2 = (store) => {
+    return `<h2>${store.hello}</h2>`;
 };
 
-makeLiveComponent({
-    prefix: 'test',
-    name: 'life',
-    builder,
-    store: `{ hello: 'Hello World' }`
-});
+const build3 = (store) => {
+    return `<h3>${store.hello}</h3>`;
+};
 
-const form = document.querySelector('form');
-console.log(form.children);
-const testForm = new FormTool(form);
+const rotator = createBuildRotator(
+    { build1, build2, build3 },
+    document.querySelector('div')
+);

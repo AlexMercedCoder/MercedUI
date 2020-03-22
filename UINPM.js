@@ -133,6 +133,12 @@ const createRotator = (object, element) => {
     };
 };
 
+const createBuildRotator = (object, element) => {
+    return (string, store) => {
+        element.innerHTML = object[string](store);
+    };
+};
+
 ////////////////////////
 //mapToString Function
 ///////////////////////
@@ -276,5 +282,6 @@ module.exports = {
     createRotator,
     makeComponent,
     makeLiveComponent,
-    captureProps
+    captureProps,
+    createBuildRotator
 };
