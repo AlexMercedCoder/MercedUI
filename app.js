@@ -1,4 +1,4 @@
-const myStore = globalStore({ hello: '' });
+const myStore = globalStore({ hello: 'cheese' });
 
 makeLiveComponent({
     prefix: 'hello',
@@ -17,3 +17,12 @@ document.querySelectorAll('hello-world').forEach((value) => {
 const sayHello = () => {
     myStore.set({ hello: 'Hello there!' });
 };
+
+consoel.log(myStore.clearRegister());
+
+function test(strings) {
+    console.log(arguments);
+    return [strings];
+}
+
+console.log(test`this is a ${myStore.get().hello}`);
