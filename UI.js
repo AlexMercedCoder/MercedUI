@@ -312,3 +312,38 @@ const MUIRequest = async (url, object) => {
     const json = await response.json();
     return await json;
 };
+
+/////////////////////////
+// globalStore
+/////////////////////////
+
+const globalStore = (initialStore) => {
+    let store = initialStore;
+    let registrar = [];
+
+    const get = () => {
+        return store;
+    };
+    const set = (newStore) => {
+        store = newStore;
+
+        registrar.forEach((value) => {
+            value.life.updateStore(store);
+        });
+    };
+
+    const register = (component) => {
+        registrar.push(component);
+        component.life.updateStore(store);
+    };
+
+    const clearRegister = () => {
+        registrar = [];
+    };
+
+    return {
+        get,
+        set,
+        register
+    };
+};

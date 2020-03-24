@@ -1,7 +1,19 @@
-const form = new FormTool(document.querySelector('form'));
+const myStore = globalStore({ hello: '' });
 
-form.fillFields({ data: 'sample', data2: 'cheese' });
+makeLiveComponent({
+    prefix: 'hello',
+    name: 'world',
+    store: '{hello: ""}',
+    builder: (store) => {
+        const props = captureProps(this);
+        return `<h1> ${store.hello} ${props.user}</h1>`;
+    }
+});
 
-console.log(form.grabValues());
+document.querySelectorAll('hello-world').forEach((value) => {
+    myStore.register(value);
+});
 
-form.clearForm();
+const sayHello = () => {
+    myStore.set({ hello: 'Hello there!' });
+};

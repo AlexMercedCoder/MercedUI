@@ -165,6 +165,23 @@ The way this works is an instance of the SiteBuilder class is in the properties 
 _captureProps(element)_
 Pass in any html element and this function returns all of its properties as an object.
 
+### globalStore
+
+creates a global store object with three functions
+
+```
+const myStore = globalStore({ hello: '' }); //Creates the global store Object
+
+myStore.get() //returns the current store
+
+myStore.register(document.querySelector('my-component')) //add component to store register
+
+myStore.set({hello: "hello world"}) //updates store, passes store to all registered components and re-renders them
+
+myStore.clearRegister() // Clears Component Registry
+
+```
+
 ### mapToDom
 
 _mapToDom(array, mapFunction, targetElement)_
