@@ -4,6 +4,8 @@
 
 ![mui](https://i.imgur.com/Jp894lv.png)
 
+_If you just wants a simpler way to create Web Components, try out simple components at https://github.com/AlexMercedCoder/simpleComponents_
+
 ## About
 
 The MercedUI Library creates some basic web components for assembling a userUI and some helper functions to help in creating a UI without having to increase your bundlesize by bringing a large UI library like Angular and React.

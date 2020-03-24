@@ -1,5 +1,5 @@
 //////////////////////////////
-//MercedUI Library by Alex Merced of AlexMerced.com
+//MercedUI Library by Alex Merced of AlexMercedCoder.com
 /////////////////////////////
 
 /////////////////
@@ -223,6 +223,8 @@ class SiteBuilder {
 ///////////////////////
 
 const makeLiveComponent = (options) => {
+    options.store = JSON.stringify(options.store);
+
     const string = `
   class ${options.prefix}${options.name} extends HTMLElement {
       constructor() {
@@ -349,6 +351,17 @@ const globalStore = (initialStore) => {
     };
 };
 
+/////////////////////////
+// gsReducer
+/////////////////////////
+
+const gsReducer = (globalStore, reducer) => {
+    return (payload) => {
+        const newStore = reducer(globalStore.get(), payload);
+        globalStore.set(newStore);
+    };
+};
+
 module.exports = {
     mapToDom,
     mapToString,
@@ -363,5 +376,6 @@ module.exports = {
     createCompRotator,
     getQueryHash,
     MUIRequest,
-    globalStore
+    globalStore,
+    gsReducer
 };

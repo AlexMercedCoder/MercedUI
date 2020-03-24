@@ -1,5 +1,5 @@
 //////////////////////////////
-//MercedUI Library by Alex Merced of AlexMerced.com
+//MercedUI Library by Alex Merced of AlexMercedCoder.com
 /////////////////////////////
 
 /////////////////
@@ -223,6 +223,7 @@ class SiteBuilder {
 ///////////////////////
 
 const makeLiveComponent = (options) => {
+    options.store = JSON.stringify(options.store);
     const string = `
   class ${options.prefix}${options.name} extends HTMLElement {
       constructor() {
