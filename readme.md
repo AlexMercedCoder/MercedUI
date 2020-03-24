@@ -169,6 +169,7 @@ Pass in any html element and this function returns all of its properties as an o
 ### globalStore
 
 creates a global store object with three functions
+NOTE: You can only register SiteBuilder objects and components made with the makeLiveComponent function for this to work. You can create registerable custom objects as long as the object has "life" property that is a SiteBuilder object.
 
 ```
 const myStore = globalStore({ hello: '' }); //Creates the global store Object
@@ -181,6 +182,33 @@ myStore.set({hello: "hello world"}) //updates store, passes store to all registe
 
 myStore.clearRegister() // Clears Component Registry
 
+```
+
+### gsReducer
+
+This allows you to bind a globalStore to a reducer function, returns a function that takes a payload which is passed into the reducer function setting the bound globalStore to the return value.
+
+Creating a reducer
+
+```
+const reduceMyStore = gsReducer(myStore, (oldStore, payload) => {
+    switch (payload.action) {
+        case 'test':
+            oldStore.hello += 'o';
+            return { ...oldStore };
+            break;
+
+        default:
+            return { ...oldstore };
+            break;
+    }
+});
+```
+
+using gsReducer
+
+```
+<button onclick="reduceMyStore({action: 'test'})">Add o</button>
 ```
 
 ### mapToDom

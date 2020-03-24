@@ -328,13 +328,15 @@ const globalStore = (initialStore) => {
         store = newStore;
 
         registrar.forEach((value) => {
-            value.life.updateStore(store);
+            value.life ? value.life.updateStore(store) : null;
+            value.updateStore ? value.updateStore(store) : null;
         });
     };
 
     const register = (component) => {
         registrar.push(component);
-        component.life.updateStore(store);
+        component.life ? component.life.updateStore(store) : null;
+        component.updateStore ? component.updateStore(store) : null;
     };
 
     const clearRegister = () => {
@@ -345,5 +347,16 @@ const globalStore = (initialStore) => {
         get,
         set,
         register
+    };
+};
+
+/////////////////////////
+// gsReducer
+/////////////////////////
+
+const gsReducer = (globalStore, reducer) => {
+    return (payload) => {
+        const newStore = reducer(globalStore.get(), payload);
+        globalStore.set(newStore);
     };
 };
