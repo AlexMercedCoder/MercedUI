@@ -4,7 +4,11 @@
 
 ![mui](https://i.imgur.com/Jp894lv.png)
 
-_If you just wants a simpler way to create Web Components, try out simple components at https://github.com/AlexMercedCoder/simpleComponents_
+If you just wants a simpler way to create Web Components, try out simple components at https://github.com/AlexMercedCoder/simpleComponents_
+
+If you prefer defining your components via classes, MercedElement is a base class easily building components: https://github.com/AlexMercedCoder/MercedElement
+
+_MercedUI has simpleComponent and MercedElement built but if you only wanted those features you can use the smaller libraries above_
 
 ## About
 
@@ -70,6 +74,68 @@ const testForm = new FormTool(form);
 ```
 
 FormTool has two methods, grabValues() which will return you an object with the forms values using the name property as the key and the value property as the value. The second method is clearForm which will render the property of value of all form elements to null. Won't grab or clear the value on submit inputs but will for all others.
+
+### MercedElement
+
+MercedElement is a base class for creating components. In the constructor use the super to define the template builder function, state, and reducer. Afterwards use the MercedElement.makeTag(name, class) static function to register the HTML tag
+
+```
+class TestTest extends MercedElement {
+    constructor() {
+        super(
+            (state, props) => { // Argument 1: The Build Function
+                return `<h1>${state.hello}</h1><h2>${props.user}</h2>`;
+            },
+
+            { hello: 'Hello World' }, //Argument 2: The Initial State
+
+            (oldstate, payload) => { //Argument 3: Reducer Function (think redux)
+                if (payload.action === 'goodbye') {
+                    return { hello: 'goodbye' };
+                }
+            }
+        );
+    }
+}
+
+MercedElement.makeTag('test-test', TestTest);
+```
+
+in HTML
+
+```
+<test-test user="joe"></test-test>
+```
+
+#### Instance methods
+
+instance.build() - captures the current props and state and renders a template
+
+instance.setState(newState) - updates the components state and runs build
+
+instance.dispatch(payload) - updates the state by running the reducer defined in the constructor
+
+#### Static methods
+
+MercedElement.register(classInstance) - registers a component instance with the global state
+
+MercedElement.clearRegister() - removes all components from global registry
+
+MercedElement.gSetState(newState) - set the global state and re-render all registered components
+
+MercedElement.gDispatch(reducer, payload) - update the global state with the given reducer function and payload, then re-render all registered components
+
+MercedElement.makeTag(name, class) - register your custom components with HTML tags, the name must have a dash like ('hello-world')
+
+#### LifeCycle Functions
+
+Outside the constructor just override the same functions used in the native web components api.
+
+connectedCallback(){} => Runs when components mounted
+
+disconnectedCallback(){} => Runs when component is removed from dom
+
+_read JavaScript Documentation regarding adoptedCallback and attributeChangedCallback_
 
 ## Functions
 
@@ -292,6 +358,53 @@ const rotate = createRotator(rotations, rotator)
 
 _mapToString(array, mapFunction)_
 Takes an array, maps a function that returns a string over its elements concatenating all the returned strings and returns the resulting string. This is particularly useful for generating strings to be used in your rotator properties.
+
+## simpleComponent
+
+Function for creating a web component that is useable in your html.
+
+**simpleComponent(config)**
+
+The config object has many properties to help build your component:
+prefix = the prefix to your tag tag
+name = the name of your component (the html tag name would be prefix-name)
+builder = function that returns template (state, props) => {return templateString}
+state = initial state object
+connected = pass in a string with your connectedCallback function `connectedCallback(){stuff to happen when component mounted}`
+disconnected = pass in a string with your disconnectedCallback function `disconnectedCallback(){stuff to happen when component unmounted}`
+observe: pass in string with ObservedAttributes function for component constructor
+other: string to define other methods and/or define attributeChangedCallback/adoptedCallback
+
+### Defining a component
+
+```
+
+simpleComponent({
+    prefix: 'test',
+    name: 'test',
+    builder: (state, props) => {
+        return `<h1>${state.hello}</h1>
+    <h2> ${props.user} </h2>`;
+    },
+    state: { hello: 'hello world' }
+});
+
+const comps = document.querySelectorAll('test-test');
+
+```
+
+### using components in your HTML
+
+In the below code we see the component used three times with different props along with three button that update each components state.
+
+```
+<test-test user="jones"></test-test>
+<test-test user="harry"></test-test>
+<test-test user="james"></test-test>
+<button onclick="comps[0].setState({hello: 'one'})">One</button>
+<button onclick="comps[1].setState({hello: 'two'})">Two</button>
+<button onclick="comps[2].setState({hello: 'three'})">Three</button>
+```
 
 ## Components
 

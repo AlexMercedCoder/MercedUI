@@ -361,3 +361,98 @@ const gsReducer = (globalStore, reducer) => {
         globalStore.set(newStore);
     };
 };
+
+//////////////////
+//MercedElement
+/////////////////
+
+class MercedElement extends HTMLElement {
+    constructor(builder, state, reducer) {
+        super();
+        this.builder = builder;
+        this.state = state;
+        this.reducer = reducer;
+        this.props = {};
+        this.attachShadow({ mode: 'open' });
+        this.build();
+    }
+
+    build() {
+        this.props = captureProps(this);
+        this.shadowRoot.innerHTML = this.builder(this.state, this.props);
+    }
+
+    setState(newState) {
+        this.state = newState;
+        this.build();
+    }
+
+    dispatch(payload) {
+        this.setState(this.reducer(this.state, payload));
+    }
+
+    static gState = {};
+
+    static gRegistry = [];
+
+    static gRegister(element) {
+        this.gRegistry.push(element);
+    }
+
+    static gSetState(newState) {
+        this.gState = newState;
+        this.gRegistry.forEach((value) => {
+            value.setState(this.gState);
+        });
+    }
+
+    static gDispatch(reducer, payload) {
+        this.gSetState(reducer(this.gState, payload));
+    }
+
+    static makeTag(name, element) {
+        window.customElements.define(name, element);
+    }
+}
+
+///////////////
+//SimpleComponent
+//////////////
+
+const simpleComponent = (options) => {
+    options.state = JSON.stringify(options.state);
+    const string = `
+
+class ${options.prefix}${options.name} extends HTMLElement {
+    constructor() {
+        super();
+        ${options.observe ? options.observe : ''}
+        this.builder = ${options.builder}
+        this.state = ${options.state}
+        this.props = {}
+        this.attachShadow({ mode: 'open' });
+        this.build()
+    }
+    ${options.connected ? options.connected : ''}
+
+    ${options.disconnected ? options.disconnected : ''}
+
+    ${options.other ? options.other : ''}
+
+    build(){
+      this.props = captureProps(this)
+      this.shadowRoot.innerHTML = this.builder(this.state, this.props)
+    }
+
+    setState(newState) {
+      this.state = newState
+      this.build()
+    }
+
+}
+
+window.customElements.define('${options.prefix}-${options.name}', ${
+        options.prefix
+    }${options.name})`;
+    eval(string);
+};
