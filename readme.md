@@ -117,7 +117,7 @@ instance.dispatch(payload) - updates the state by running the reducer defined in
 
 #### Static methods
 
-MercedElement.register(classInstance) - registers a component instance with the global state
+MercedElement.gRegister(classInstance) - registers a component instance with the global state
 
 MercedElement.clearRegister() - removes all components from global registry
 
