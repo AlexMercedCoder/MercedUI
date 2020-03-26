@@ -331,6 +331,7 @@ const globalStore = (initialStore) => {
         registrar.forEach((value) => {
             value.life ? value.life.updateStore(store) : null;
             value.updateStore ? value.updateStore(store) : null;
+            value.state ? value.setState(store) : null;
         });
     };
 
@@ -338,6 +339,7 @@ const globalStore = (initialStore) => {
         registrar.push(component);
         component.life ? component.life.updateStore(store) : null;
         component.updateStore ? component.updateStore(store) : null;
+        component.state ? component.setState(store) : null;
     };
 
     const clearRegister = () => {
@@ -347,7 +349,8 @@ const globalStore = (initialStore) => {
     return {
         get,
         set,
-        register
+        register,
+        clearRegister
     };
 };
 
