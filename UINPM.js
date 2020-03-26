@@ -462,6 +462,40 @@ window.customElements.define('${options.prefix}-${options.name}', ${
     eval(string);
 };
 
+///////////////////
+// mRouter and mLink
+///////////////////
+
+const mRoutes = {};
+
+class MercedRouter extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.props = captureProps(this);
+        mRoutes[this.props.name] = this;
+        this.shadowRoot.innerHTML = `<${this.props.default}><slot></slot></${this.props.default}>`;
+    }
+
+    route(target) {
+        this.shadowRoot.innerHTML = `<${target}><slot></slot></${target}>`;
+    }
+}
+
+window.customElements.define('m-router', MercedRouter);
+
+class MercedLink extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        this.props = captureProps(this);
+        this.shadowRoot.innerHTML = `<span style="cursor: pointer;"
+        onclick="mRoutes.${this.props.name}.route('${this.props.target}')"><slot></slot></span>`;
+    }
+}
+
+window.customElements.define('m-link', MercedLink);
+
 module.exports = {
     mapToDom,
     mapToString,
@@ -479,5 +513,7 @@ module.exports = {
     globalStore,
     gsReducer,
     MercedElement,
-    simpleComponent
+    simpleComponent,
+    MercedRouter,
+    MercedLink
 };

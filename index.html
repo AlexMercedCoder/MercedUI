@@ -7,11 +7,9 @@
         <script src="app.js" charset="utf-8" defer></script>
     </head>
     <body>
-        <header user="Poppu"></header>
-        <hello-world user="Bob"></hello-world>
-        <hello-world user="Steve"></hello-world>
-        <hello-world user="John"></hello-world>
-        <button onclick="sayHello()">Say Hello</button>
-        <button onclick="reduceMyStore({action: 'test'})">Add o</button>
+        <m-router name="main" default="hello-world"></m-router>
+        <m-link name="main" target="goodbye-world">
+            Click Me to Say Goodbye
+        </m-link>
     </body>
 </html>

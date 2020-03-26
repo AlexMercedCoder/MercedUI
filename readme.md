@@ -408,7 +408,47 @@ In the below code we see the component used three times with different props alo
 
 ## Components
 
-#### All Components have toggle() to toggle the display of the component
+### m-router and m-link
+
+Very similar to most routers, the router tag specifies where links will render and link creates a link that when clicked will render a particular component to the router with the same name attribute. Each router must have a unique name attribute.
+
+-   routers have a default attribute to specify a component to start with
+-   links have a target attribute to specify what component will be rendered if clicked.
+
+Given these two Components
+
+```
+makeLiveComponent({
+    prefix: 'hello',
+    name: 'world',
+    store: '{hello: ""}',
+    builder: (store) => {
+        const props = captureProps(this);
+        return `<h1>Hello World</h1>`;
+    }
+});
+
+makeLiveComponent({
+    prefix: 'goodbye',
+    name: 'world',
+    store: '{hello: ""}',
+    builder: (store) => {
+        const props = captureProps(this);
+        return `<h1>Goodbye World</h1>`;
+    }
+});
+```
+
+Here is an example of using the router and link tags
+
+```
+<m-router name="main" default="hello-world"></m-router>
+<m-link name="main" target="goodbye-world">
+    Click Me to Say Goodbye
+</m-link>
+```
+
+#### All Components below have a instance.toggle() method to toggle the display of the component
 
 ### MercedContainer
 
