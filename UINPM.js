@@ -496,6 +496,38 @@ class MercedLink extends HTMLElement {
 
 window.customElements.define('m-link', MercedLink);
 
+///////////////////////////////
+// QuickComponent
+///////////////////////////////
+
+const quickComponent = (
+    name,
+    builder,
+    state,
+    reducer,
+    connected,
+    disconnected
+) => {
+    MercedElement.makeTag(
+        name,
+        class extends MercedElement {
+            constructor() {
+                super(builder, state, reducer);
+            }
+
+            connectedCallback() {
+                const element = this;
+                connected ? connected(element) : null;
+            }
+
+            disconnectedCallback() {
+                const element = this;
+                disconnected ? disconnected(element) : null;
+            }
+        }
+    );
+};
+
 module.exports = {
     mapToDom,
     mapToString,
@@ -515,5 +547,6 @@ module.exports = {
     MercedElement,
     simpleComponent,
     MercedRouter,
-    MercedLink
+    MercedLink,
+    quickComponent
 };

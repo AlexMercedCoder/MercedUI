@@ -1,19 +1,12 @@
-makeLiveComponent({
-    prefix: 'hello',
-    name: 'world',
-    store: '{hello: ""}',
-    builder: (store) => {
-        const props = captureProps(this);
-        return `<h1>Hello World</h1>`;
-    }
-});
+const builder = (state, props) => {
+    return `<h1>${state.hello}</h1>
+          <h2>${props.user}</h2>`;
+};
 
-makeLiveComponent({
-    prefix: 'goodbye',
-    name: 'world',
-    store: '{hello: ""}',
-    builder: (store) => {
-        const props = captureProps(this);
-        return `<h1>Goodbye World</h1>`;
-    }
-});
+initialState = { hello: 'hello world' };
+
+const connected = (element) => {
+    console.log(element);
+};
+
+quickComponent('test-test', builder, initialState, null, connected);

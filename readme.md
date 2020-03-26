@@ -15,6 +15,7 @@ _MercedUI has simpleComponent and MercedElement built but if you only wanted tho
 The MercedUI Library creates some basic web components for assembling a userUI and some helper functions to help in creating a UI without having to increase your bundlesize by bringing a large UI library like Angular and React.
 
 CDN Link: http://www.alexmercedcoder.com/UI.js
+
 Youtube Tutorials: https://www.youtube.com/playlist?list=PLY6oTPmKnKbYrP3DfCUTYYADu0IT9DRZZ
 
 ## Classes
@@ -406,6 +407,42 @@ In the below code we see the component used three times with different props alo
 <button onclick="comps[2].setState({hello: 'three'})">Three</button>
 ```
 
+### quickComponent
+
+quickComponent is a function to help quickly make a component using the MercedElement class. You are better of using the MercedElement class to make your components if you need to add addtional class methods or use the adoptedCallback or attributeChangedCallback.
+
+quickComonent(name, builder, state, reducer, connected, disconnected)
+
+-   name => the name of component must have a dash like "my-component"
+-   builder => function that returns html template string
+-   state => initial state object, like any MercedElement can be updated via instance.setState(newState)
+-   reducer => function that runs when use instance.dispatch(payload), function is passed the oldState and payload and its return value becomes the new state.
+-   connected(element) => function that is passed the element runs on component mounting
+-   disconnected(element) => function that is passed the element and runs when function is dismounted
+
+##### Building a Component with QuickComponent
+
+```
+const builder = (state, props) => {
+    return `<h1>${state.hello}</h1>
+          <h2>${props.user}</h2>`;
+};
+
+initialState = { hello: 'hello world' };
+
+const connected = (element) => {
+    console.log(element);
+};
+
+quickComponent('test-test', builder, initialState, null, connected);
+```
+
+The component in your HTMLElement
+
+```
+<test-test user="Joe"></test-test>
+```
+
 ## Components
 
 ### m-router and m-link
@@ -452,6 +489,8 @@ Here is an example of using the router and link tags
 
 ### MercedContainer
 
+**This has been removed from the main CDN, to use this components use this CDN link: http://www.alexmercedcoder.com/UI2.js**
+
 ```
 
 <merced-container></merced-container>
@@ -476,6 +515,8 @@ can pass in the following properties:
 -   height: sets the height style property
 
 ### MercedCard
+
+**This has been removed from the main CDN, to use this components use this CDN link: http://www.alexmercedcoder.com/UI2.js**
 
 ```
 
