@@ -11,4 +11,6 @@ const connected = (element) => {
 
 quickComponent('test-test', builder, initialState, null, connected);
 
-console.log($m.select('test-test'));
+const testEl = $m.select('test-test');
+
+console.log($s.select(testEl, 'h1'));

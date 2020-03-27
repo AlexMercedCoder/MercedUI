@@ -447,27 +447,49 @@ The component in your HTMLElement
 <test-test user="Joe"></test-test>
 ```
 
-## \$M function abbreviations
+## \$M DOM function abbreviations
 
 _abbreviations of standard DOM functions to make using them easier_
 
-\$m.select => document.querySelector
+\$m.select(query) => document.querySelector(query)
 
-\$m.selectAll => document.querySelectorAll
+\$m.selectAll(query) => document.querySelectorAll(query)
 
-\$m.byId => document.getElementById
+\$m.byId(query) => document.getElementById(query)
 
-\$m.byTag => document.getElementsByTagName
+\$m.byTag(query) => document.getElementsByTagName(query)
 
-\$m.byClass => document.getElementsByClassName
+\$m.byClass(query) => document.getElementsByClassName(query)
 
-\$m.create => document.createElement
+\$m.create(query) => document.createElement(query)
 
-\$m.remove => document.removeChild
+\$m.remove(query) => document.removeChild(query)
 
-\$m.append => document.appendChild
+\$m.append(query) => document.appendChild(query)
 
-\$m.replace => document.replaceChild
+\$m.replace(old, new) => document.replaceChild(old, new)
+
+## \$S ShadowDOM function abbreviations
+
+_abbreviations of shadow DOM functions to make using them easier_
+
+\$s.select(element, query) => element.shadowRoot.querySelector(query)
+
+\$s.selectAll(element, query) => element.shadowRoot.querySelectorAll(query)
+
+\$s.byId(element, query) => element.shadowRoot.getElementById(query)
+
+\$s.byTag(element, query) => element.shadowRoot.getElementsByTagName(query)
+
+\$s.byClass(element, query) => element.shadowRoot.getElementsByClassName(query)
+
+\$s.create(element, query) => element.shadowRoot.createElement(query)
+
+\$s.remove(element, query) => element.shadowRoot.removeChild(query)
+
+\$s.append(element, query) => element.shadowRoot.appendChild(query)
+
+\$s.replace(element, old, new) => element.shadowRoot.replaceChild(old, new)
 
 ## Components
 

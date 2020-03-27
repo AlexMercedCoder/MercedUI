@@ -563,3 +563,37 @@ export const $m = {
         return document.replaceChild(q, y);
     }
 };
+
+///////////////////////////////
+// $s shadowRoot function abbreviations
+///////////////////////////////
+
+export const $s = {
+    select: (e, q) => {
+        return e.shadowRoot.querySelector(q);
+    },
+    selectAll: (e, q) => {
+        return e.shadowRoot.querySelectorAll(q);
+    },
+    byId: (e, q) => {
+        return e.shadowRoot.getElementById(q);
+    },
+    byTag: (e, q) => {
+        return e.shadowRoot.getElementsByTagName(q);
+    },
+    byClass: (e, q) => {
+        return e.shadowRoot.getElementsByClassName(q);
+    },
+    create: (e, q) => {
+        return e.shadowRoot.createElement(q);
+    },
+    remove: (e, q) => {
+        return e.shadowRoot.removeChild(q);
+    },
+    append: (e, q) => {
+        return e.shadowRoot.appendChild(q);
+    },
+    replace: (e, q, y) => {
+        return e.shadowRoot.replaceChild(q, y);
+    }
+};
