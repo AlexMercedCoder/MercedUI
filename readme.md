@@ -16,7 +16,7 @@ The MercedUI Library creates some basic web components for assembling a userUI a
 
 CDN Link: http://www.alexmercedcoder.com/UI.js (10.4kb)
 
-CDN Link (MODULE VERSION): http://www.alexmercedcoder.com/UINPM.js (12.4 kb)
+CDN Link (MODULE VERSION): http://www.alexmercedcoder.com/MUIMODULE.js (12.4 kb)
 
 Youtube Tutorials: https://www.youtube.com/playlist?list=PLY6oTPmKnKbYrP3DfCUTYYADu0IT9DRZZ
 
@@ -503,8 +503,8 @@ makeLiveComponent({
 Here is an example of using the router and link tags
 
 ```
-<m-router name="main" default="hello-world"></m-router>
-<m-link name="main" target="goodbye-world">
+<m-router name="main" default="hello-world" props="user='steve'"></m-router>
+<m-link name="main" target="goodbye-world" props="user='steve'">
     Click Me to Say Goodbye
 </m-link>
 ```

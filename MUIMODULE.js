@@ -24,7 +24,7 @@ margin: 20px auto;
 
 `;
 
-class MercedContainer extends HTMLElement {
+export class MercedContainer extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -72,7 +72,7 @@ margin: 20px auto;
 
 `;
 
-class MercedCard extends HTMLElement {
+export class MercedCard extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -102,7 +102,7 @@ window.customElements.define('merced-card', MercedCard);
 //mapToDom Function
 ///////////////////////
 
-const mapToDom = (arr, callback, element) => {
+export const mapToDom = (arr, callback, element) => {
     let html = '';
     for (index = 0; index < arr.length; index++) {
         html = html + callback(arr[index], index);
@@ -114,7 +114,7 @@ const mapToDom = (arr, callback, element) => {
 //bindData Function
 ///////////////////////
 
-const bindData = (arr, callback, element) => {
+export const bindData = (arr, callback, element) => {
     let myData = arr;
     mapToDom(myData, callback, element);
     return (newArr) => {
@@ -127,19 +127,19 @@ const bindData = (arr, callback, element) => {
 //createRotator
 ///////////////////////
 
-const createRotator = (object, element) => {
+export const createRotator = (object, element) => {
     return (string) => {
         element.innerHTML = object[string];
     };
 };
 
-const createBuildRotator = (object, element) => {
+export const createBuildRotator = (object, element) => {
     return (string, store) => {
         element.innerHTML = object[string](store);
     };
 };
 
-const createCompRotator = (element) => {
+export const createCompRotator = (element) => {
     return (component, attributes) => {
         element.innerHTML = `<${component} ${attributes}></${component}>`;
     };
@@ -149,7 +149,7 @@ const createCompRotator = (element) => {
 //mapToString Function
 ///////////////////////
 
-const mapToString = (arr, callback, element) => {
+export const mapToString = (arr, callback, element) => {
     let html = '';
     for (index = 0; index < arr.length; index++) {
         html = html + callback(arr[index], index);
@@ -161,7 +161,7 @@ const mapToString = (arr, callback, element) => {
 //makeComponent
 ///////////////////////
 
-const makeComponent = (options) => {
+export const makeComponent = (options) => {
     const string = `const compTemplate = document.createElement('template');
 
   compTemplate.innerHTML = "${options.template}";
@@ -189,7 +189,7 @@ const makeComponent = (options) => {
 //capture props
 ///////////////////////
 
-const captureProps = (element) => {
+export const captureProps = (element) => {
     const att = [...element.attributes];
     const entries = att.map((value) => {
         return [value.name, value.value];
@@ -202,7 +202,7 @@ const captureProps = (element) => {
 // SiteBuilder
 ////////////////////////////
 
-class SiteBuilder {
+export class SiteBuilder {
     constructor(target, store, builder) {
         this.target = target;
         this.store = store;
@@ -222,7 +222,7 @@ class SiteBuilder {
 //makeLiveComponent
 ///////////////////////
 
-const makeLiveComponent = (options) => {
+export const makeLiveComponent = (options) => {
     options.store = JSON.stringify(options.store);
 
     const string = `
@@ -250,7 +250,7 @@ const makeLiveComponent = (options) => {
 // FormTool
 ////////////////////////////
 
-class FormTool {
+export class FormTool {
     constructor(form) {
         this.form = form;
         this.fields = [...this.form.children].filter((value) => {
@@ -291,7 +291,7 @@ class FormTool {
 // getQueryHash
 ////////////////////////////
 
-const getQueryHash = () => {
+export const getQueryHash = () => {
     const hash = window.location.href.split('#')[1];
 
     const queryArray1 = window.location.href
@@ -310,7 +310,7 @@ const getQueryHash = () => {
 // MUIRequest
 ////////////////////////////
 
-const MUIRequest = async (url, object) => {
+export const MUIRequest = async (url, object) => {
     const response = await fetch(url, object);
     const json = await response.json();
     return await json;
@@ -320,7 +320,7 @@ const MUIRequest = async (url, object) => {
 // globalStore
 /////////////////////////
 
-const globalStore = (initialStore) => {
+export const globalStore = (initialStore) => {
     let store = initialStore;
     let registrar = [];
 
@@ -360,7 +360,7 @@ const globalStore = (initialStore) => {
 // gsReducer
 /////////////////////////
 
-const gsReducer = (globalStore, reducer) => {
+export const gsReducer = (globalStore, reducer) => {
     return (payload) => {
         const newStore = reducer(globalStore.get(), payload);
         globalStore.set(newStore);
@@ -371,7 +371,7 @@ const gsReducer = (globalStore, reducer) => {
 //MercedElement
 /////////////////
 
-class MercedElement extends HTMLElement {
+export class MercedElement extends HTMLElement {
     constructor(builder, state, reducer) {
         super();
         this.builder = builder;
@@ -424,7 +424,7 @@ class MercedElement extends HTMLElement {
 //SimpleComponent
 //////////////
 
-const simpleComponent = (options) => {
+export const simpleComponent = (options) => {
     options.state = JSON.stringify(options.state);
     const string = `
 
@@ -466,9 +466,9 @@ window.customElements.define('${options.prefix}-${options.name}', ${
 // mRouter and mLink
 ///////////////////
 
-const mRoutes = {};
+export const mRoutes = {};
 
-class MercedRouter extends HTMLElement {
+export class MercedRouter extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -484,7 +484,7 @@ class MercedRouter extends HTMLElement {
 
 window.customElements.define('m-router', MercedRouter);
 
-class MercedLink extends HTMLElement {
+export class MercedLink extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -502,7 +502,7 @@ window.customElements.define('m-link', MercedLink);
 // QuickComponent
 ///////////////////////////////
 
-const quickComponent = (
+export const quickComponent = (
     name,
     builder,
     state,
@@ -534,7 +534,7 @@ const quickComponent = (
 // $M function abbreviations
 ///////////////////////////////
 
-$m = {
+export const $m = {
     select: (q) => {
         return document.querySelector(q);
     },
@@ -562,28 +562,4 @@ $m = {
     replace: (q, y) => {
         return document.replaceChild(q, y);
     }
-};
-
-module.exports = {
-    mapToDom,
-    mapToString,
-    bindData,
-    FormTool,
-    SiteBuilder,
-    createRotator,
-    makeComponent,
-    makeLiveComponent,
-    captureProps,
-    createBuildRotator,
-    createCompRotator,
-    getQueryHash,
-    MUIRequest,
-    globalStore,
-    gsReducer,
-    MercedElement,
-    simpleComponent,
-    MercedRouter,
-    MercedLink,
-    quickComponent,
-    $m
 };

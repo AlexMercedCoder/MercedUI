@@ -376,11 +376,11 @@ class MercedRouter extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.props = captureProps(this);
         mRoutes[this.props.name] = this;
-        this.shadowRoot.innerHTML = `<${this.props.default}><slot></slot></${this.props.default}>`;
+        this.shadowRoot.innerHTML = `<${this.props.default} ${this.props.props}><slot></slot></${this.props.default}>`;
     }
 
-    route(target) {
-        this.shadowRoot.innerHTML = `<${target}><slot></slot></${target}>`;
+    route(target, props) {
+        this.shadowRoot.innerHTML = `<${target} ${props}><slot></slot></${target}>`;
     }
 }
 
@@ -392,7 +392,9 @@ class MercedLink extends HTMLElement {
         this.attachShadow({ mode: 'open' });
         this.props = captureProps(this);
         this.shadowRoot.innerHTML = `<span style="cursor: pointer;"
-        onclick="mRoutes.${this.props.name}.route('${this.props.target}')"><slot></slot></span>`;
+        onclick="mRoutes.${this.props.name}.route('${this.props.target}',${
+            this.props.props ? `'${this.props.props}'` : ''
+        })"><slot></slot></span>`;
     }
 }
 
