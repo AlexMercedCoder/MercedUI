@@ -445,6 +445,28 @@ The component in your HTMLElement
 <test-test user="Joe"></test-test>
 ```
 
+## \$M function abbreviations
+
+_abbreviations of standard DOM functions to make using them easier_
+
+\$m.select => document.querySelector
+
+\$m.selectAll => document.querySelectorAll
+
+\$m.byId => document.getElementById
+
+\$m.byTag => document.getElementsByTagName
+
+\$m.byClass => document.getElementsByClassName
+
+\$m.create => document.createElement
+
+\$m.remove => document.removeChild
+
+\$m.append => document.appendChild
+
+\$m.replace => document.replaceChild
+
 ## Components
 
 ### m-router and m-link
@@ -544,7 +566,3 @@ can pass in the following properties:
 -   align: sets the align-items style property
 -   height: sets the height style property
 -   theBorder: sets the border style property
-
-```
-
-```

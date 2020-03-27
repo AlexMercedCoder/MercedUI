@@ -10,3 +10,5 @@ const connected = (element) => {
 };
 
 quickComponent('test-test', builder, initialState, null, connected);
+
+console.log($m.select('test-test'));

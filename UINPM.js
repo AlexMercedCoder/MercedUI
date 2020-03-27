@@ -528,6 +528,40 @@ const quickComponent = (
     );
 };
 
+///////////////////////////////
+// $M function abbreviations
+///////////////////////////////
+
+$m = {
+    select: (q) => {
+        return document.querySelector(q);
+    },
+    selectAll: (q) => {
+        return document.querySelectorAll(q);
+    },
+    byId: (q) => {
+        return document.getElementById(q);
+    },
+    byTag: (q) => {
+        return document.getElementsByTagName(q);
+    },
+    byClass: (q) => {
+        return document.getElementsByClassName(q);
+    },
+    create: (q) => {
+        return document.createElement(q);
+    },
+    remove: (q) => {
+        return document.removeChild(q);
+    },
+    append: (q) => {
+        return document.appendChild(q);
+    },
+    replace: (q, y) => {
+        return document.replaceChild(q, y);
+    }
+};
+
 module.exports = {
     mapToDom,
     mapToString,
@@ -548,5 +582,6 @@ module.exports = {
     simpleComponent,
     MercedRouter,
     MercedLink,
-    quickComponent
+    quickComponent,
+    $m
 };
