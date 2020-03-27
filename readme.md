@@ -14,9 +14,11 @@ _MercedUI has simpleComponent and MercedElement built but if you only wanted tho
 
 The MercedUI Library creates some basic web components for assembling a userUI and some helper functions to help in creating a UI without having to increase your bundlesize by bringing a large UI library like Angular and React.
 
-CDN Link: http://www.alexmercedcoder.com/UI.js (10.4kb)
+CDN Link: http://www.alexmercedcoder.com/UI.js (11kb)
 
-CDN Link (MODULE VERSION): http://www.alexmercedcoder.com/MUIMODULE.js (12.4 kb)
+CDN Link (ES 6 MODULE VERSION): http://www.alexmercedcoder.com/MUIMODULE.js (13 kb)
+
+CDN Link (Node MODULE.Exports VERSION): http://www.alexmercedcoder.com/UINPM.js (14 kb)
 
 Youtube Tutorials: https://www.youtube.com/playlist?list=PLY6oTPmKnKbYrP3DfCUTYYADu0IT9DRZZ
 
