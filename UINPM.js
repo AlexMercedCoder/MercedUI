@@ -294,12 +294,11 @@ class FormTool {
 const getQueryHash = () => {
     const hash = window.location.href.split('#')[1];
 
-    const queryArray1 = window.location.href
-        .split('?')[1]
-        .split('#')[0]
-        .split('&');
+    const queryArray1 = window.location.href.split('?')[1];
 
-    const queryEntries = queryArray1.map((value) => {
+    const queryArray2 = queryArray1 ? queryArray1.split('#')[0].split('&') : [];
+
+    const queryEntries = queryArray2.map((value) => {
         return value.split('=');
     });
 
