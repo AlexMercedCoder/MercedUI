@@ -22,6 +22,40 @@ CDN Link (Node MODULE.Exports VERSION): http://www.alexmercedcoder.com/UINPM.js 
 
 Youtube Tutorials: https://www.youtube.com/playlist?list=PLY6oTPmKnKbYrP3DfCUTYYADu0IT9DRZZ
 
+## Installation
+
+### CDN
+
+```
+script src="http://www.alexmercedcoder.com/UI.js" charset="utf-8" defer></script>
+```
+
+### NPM
+
+```
+npm i mercedui
+```
+
+in your javascript file
+
+```
+const {MercedElement, $m, $s, FormTool} = require("mercedui")
+```
+
+### ES6 Module
+
+index.html
+
+```
+<script type="module" src="app.js" charset="utf-8" defer></script>
+```
+
+app.js
+
+```
+import {MercedElement, $m, $s, FormTool} from "http://www.alexmercedcoder.com/MUIMODULE.js"
+```
+
 ## Classes
 
 ### SiteBuilder
