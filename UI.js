@@ -8,7 +8,7 @@
 
 const mapToDom = (arr, callback, element) => {
     let html = '';
-    for (index = 0; index < arr.length; index++) {
+    for (let index = 0; index < arr.length; index++) {
         html = html + callback(arr[index], index);
     }
     element.innerHTML = html;
@@ -55,7 +55,7 @@ const createCompRotator = (element) => {
 
 const mapToString = (arr, callback) => {
     let html = '';
-    for (index = 0; index < arr.length; index++) {
+    for (let index = 0; index < arr.length; index++) {
         html = html + callback(arr[index], index);
     }
     return html;
@@ -390,10 +390,13 @@ class MercedLink extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.props = captureProps(this);
-        this.shadowRoot.innerHTML = `<span style="cursor: pointer;"
-        onclick="mRoutes.${this.props.name}.route('${this.props.target}',${
-            this.props.props ? `'${this.props.props}'` : ''
-        })"><slot></slot></span>`;
+        this.shadowRoot.innerHTML = `<span style="cursor: pointer;"><slot></slot></span>`;
+        this.shadowRoot.querySelector('span').addEventListener('click', () => {
+            mRoutes[this.props.name].route(
+                this.props.target,
+                this.props.props ? this.props.props : ''
+            );
+        });
     }
 }
 

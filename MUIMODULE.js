@@ -104,7 +104,7 @@ window.customElements.define('merced-card', MercedCard);
 
 export const mapToDom = (arr, callback, element) => {
     let html = '';
-    for (index = 0; index < arr.length; index++) {
+    for (let index = 0; index < arr.length; index++) {
         html = html + callback(arr[index], index);
     }
     element.innerHTML = html;
@@ -149,9 +149,9 @@ export const createCompRotator = (element) => {
 //mapToString Function
 ///////////////////////
 
-export const mapToString = (arr, callback, element) => {
+export const mapToString = (arr, callback) => {
     let html = '';
-    for (index = 0; index < arr.length; index++) {
+    for (let index = 0; index < arr.length; index++) {
         html = html + callback(arr[index], index);
     }
     return html;
@@ -242,7 +242,6 @@ export const makeLiveComponent = (options) => {
   }
 
   window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
-    console.log(string);
     eval(string);
 };
 
@@ -488,10 +487,13 @@ export class MercedLink extends HTMLElement {
         super();
         this.attachShadow({ mode: 'open' });
         this.props = captureProps(this);
-        this.shadowRoot.innerHTML = `<span style="cursor: pointer;"
-        onclick="mRoutes.${this.props.name}.route('${this.props.target}',${
-            this.props.props ? `'${this.props.props}'` : ''
-        })"><slot></slot></span>`;
+        this.shadowRoot.innerHTML = `<span style="cursor: pointer;"><slot></slot></span>`;
+        this.shadowRoot.querySelector('span').addEventListener('click', () => {
+            mRoutes[this.props.name].route(
+                this.props.target,
+                this.props.props ? this.props.props : ''
+            );
+        });
     }
 }
 

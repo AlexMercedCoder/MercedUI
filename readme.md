@@ -201,13 +201,13 @@ MUIRequest('https://jsonplaceholder.typicode.com/posts/1').then((response) =>
 ### makeComponent
 
 _makeComponent({options})_
-Pass an object with all the options in to generate a component.
+Pass an object with all the options in to generate a component. This is best used for a very simple components. For multi-line templating and reactive state use makeLiveComponent, MercedElement, or quickComponent
 
 #### Option properties
 
 -   prefix: the first part of the components components name
 -   name: the second part of the components name
--   template: a string with the html to be outputted whenever the tag is used
+-   template: a string with the html to be outputted whenever the tag is used (entire string must be on one line)
 -   connected: string for code to be run when the component is mounted
 -   observe: string to ObservedAttributes to constructor
 -   other: string to define methods or make use of attributeChangedCallback, disconnectedCallback or adoptedCallback
@@ -229,7 +229,7 @@ using the component
 <test-comp></test-comp>
 ```
 
-### makeComponent
+### makeLiveComponent
 
 _makeLiveComponent({options})_
 Pass an object with all the options in to generate a component with reactive data.
