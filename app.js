@@ -1,16 +1,14 @@
-const builder = (state, props) => {
-    return `<h1>${state.hello}</h1>
-          <h2>${props.user}</h2>`;
-};
+makeComponent({
+  prefix: 'test',
+  name: 'test',
+  template: '<h1>Hello World</h1>',
+  debug: false
+})
 
-initialState = { hello: 'hello world' };
-
-const connected = (element) => {
-    console.log(element);
-};
-
-quickComponent('test-test', builder, initialState, null, connected);
-
-const testEl = $m.select('test-test');
-
-console.log($s.select(testEl, 'h1'));
+makeLiveComponent({
+  prefix: 'test',
+  name: 'test2',
+  builder: (store) => `<h1>Goodbye World</h1>`,
+  store: {},
+  debug: false
+})

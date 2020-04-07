@@ -73,19 +73,23 @@ const makeComponent = (options) => {
   class ${options.prefix}${options.name} extends HTMLElement {
       constructor() {
           super();
-          ${options.observe}
+          ${options.observe ? options.observe : ''}
           this.attachShadow({ mode: 'open' });
       }
       connectedCallback() {
           this.shadowRoot.appendChild(compTemplate.content.cloneNode(true));
-          ${options.connected}
+          ${options.connected ? options.connected : ''}
       }
 
-      ${options.other}
+      ${options.other ? options.other : ''}
 
   }
 
   window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
+
+  if(options.debug){
+    options.debug === true ? console.log(string) : ''
+  }
     eval(string);
 };
 
@@ -127,24 +131,31 @@ class SiteBuilder {
 ///////////////////////
 
 const makeLiveComponent = (options) => {
+
     options.store = JSON.stringify(options.store);
+
     const string = `
   class ${options.prefix}${options.name} extends HTMLElement {
       constructor() {
           super();
-          ${options.observe}
+          ${options.observe ? options.observe : ''}
           this.attachShadow({ mode: 'open' });
           this.life = new SiteBuilder(this.shadowRoot, ${options.store}, ${options.builder} )
       }
       connectedCallback() {
-          ${options.connected}
+          ${options.connected ? options.connected : ''}
       }
 
-      ${options.other}
+      ${options.other ? options.other : ''}
 
   }
 
   window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
+
+  if(options.debug){
+    options.debug === true ? console.log(string) : ''
+  }
+
     eval(string);
 };
 
@@ -360,6 +371,11 @@ class ${options.prefix}${options.name} extends HTMLElement {
 window.customElements.define('${options.prefix}-${options.name}', ${
         options.prefix
     }${options.name})`;
+
+    if(options.debug){
+      options.debug === true ? console.log(string) : ''
+    }
+    
     eval(string);
 };
 

@@ -211,6 +211,7 @@ Pass an object with all the options in to generate a component. This is best use
 -   connected: string for code to be run when the component is mounted
 -   observe: string to ObservedAttributes to constructor
 -   other: string to define methods or make use of attributeChangedCallback, disconnectedCallback or adoptedCallback
+-   debug: If set to true, will console log the underlying string that is evaluated to create the component so you can debug your component.
 
 Defining a component
 
@@ -243,6 +244,7 @@ Pass an object with all the options in to generate a component with reactive dat
 -   connected: string for code to be run when the component is mounted
 -   observe: string to ObservedAttributes to constructor
 -   other: string to define methods or make use of attributeChangedCallback, disconnectedCallback or adoptedCallback
+-   debug: If set to true, will console log the underlying string that is evaluated to create the component so you can debug your component.
 
 Defining a component
 
@@ -413,6 +415,7 @@ connected = pass in a string with your connectedCallback function `connectedCall
 disconnected = pass in a string with your disconnectedCallback function `disconnectedCallback(){stuff to happen when component unmounted}`
 observe: pass in string with ObservedAttributes function for component constructor
 other: string to define other methods and/or define attributeChangedCallback/adoptedCallback
+debug: If set to true, will console log the underlying string that is evaluated to create the component so you can debug your component.
 
 ### Defining a component
 
@@ -449,7 +452,7 @@ In the below code we see the component used three times with different props alo
 
 quickComponent is a function to help quickly make a component using the MercedElement class. You are better of using the MercedElement class to make your components if you need to add addtional class methods or use the adoptedCallback or attributeChangedCallback.
 
-quickComonent(name, builder, state, reducer, connected, disconnected)
+quickComponent(name, builder, state, reducer, connected, disconnected)
 
 -   name => the name of component must have a dash like "my-component"
 -   builder => function that returns html template string
