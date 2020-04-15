@@ -181,11 +181,13 @@ export const makeComponent = (options) => {
 
   }
 
-  window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
+  window.customElements.define('${options.prefix}-${options.name}', ${
+        options.prefix
+    }${options.name});`;
 
-  if(options.debug){
-    options.debug === true ? console.log(string) : ''
-  }
+    if (options.debug) {
+        options.debug === true ? console.log(string) : '';
+    }
     eval(string);
 };
 
@@ -216,7 +218,7 @@ export class SiteBuilder {
     }
 
     updateStore(newStore) {
-        this.store = newStore;
+        this.store = { ...this.store, ...newStore };
         this.template = this.builder(this.store);
         this.target.innerHTML = this.template;
     }
@@ -227,7 +229,6 @@ export class SiteBuilder {
 ///////////////////////
 
 export const makeLiveComponent = (options) => {
-
     options.store = JSON.stringify(options.store);
 
     const string = `
@@ -236,7 +237,9 @@ export const makeLiveComponent = (options) => {
           super();
           ${options.observe ? options.observe : ''}
           this.attachShadow({ mode: 'open' });
-          this.life = new SiteBuilder(this.shadowRoot, ${options.store}, ${options.builder} )
+          this.life = new SiteBuilder(this.shadowRoot, ${options.store}, ${
+        options.builder
+    } )
       }
       connectedCallback() {
           ${options.connected ? options.connected : ''}
@@ -246,11 +249,13 @@ export const makeLiveComponent = (options) => {
 
   }
 
-  window.customElements.define('${options.prefix}-${options.name}', ${options.prefix}${options.name});`;
+  window.customElements.define('${options.prefix}-${options.name}', ${
+        options.prefix
+    }${options.name});`;
 
-  if(options.debug){
-    options.debug === true ? console.log(string) : ''
-  }
+    if (options.debug) {
+        options.debug === true ? console.log(string) : '';
+    }
 
     eval(string);
 };
@@ -360,7 +365,7 @@ export const globalStore = (initialStore) => {
         get,
         set,
         register,
-        clearRegister
+        clearRegister,
     };
 };
 
@@ -396,7 +401,7 @@ export class MercedElement extends HTMLElement {
     }
 
     setState(newState) {
-        this.state = newState;
+        this.state = { ...this.state, ...newState };
         this.build();
     }
 
@@ -458,7 +463,7 @@ class ${options.prefix}${options.name} extends HTMLElement {
     }
 
     setState(newState) {
-      this.state = newState
+      this.state = { ...this.state, ...newState };
       this.build()
     }
 
@@ -468,8 +473,8 @@ window.customElements.define('${options.prefix}-${options.name}', ${
         options.prefix
     }${options.name})`;
 
-    if(options.debug){
-      options.debug === true ? console.log(string) : ''
+    if (options.debug) {
+        options.debug === true ? console.log(string) : '';
     }
 
     eval(string);
@@ -577,7 +582,7 @@ export const $m = {
     },
     replace: (q, y) => {
         return document.replaceChild(q, y);
-    }
+    },
 };
 
 ///////////////////////////////
@@ -611,5 +616,5 @@ export const $s = {
     },
     replace: (e, q, y) => {
         return e.shadowRoot.replaceChild(q, y);
-    }
+    },
 };
