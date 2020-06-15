@@ -398,6 +398,11 @@ class MercedElement extends HTMLElement {
     build() {
         this.props = captureProps(this);
         this.shadowRoot.innerHTML = this.builder(this.state, this.props);
+        this.postBuild(state, props);
+    }
+
+    postBuild(state, props) {
+        return null;
     }
 
     setState(newState) {
@@ -447,6 +452,7 @@ class ${options.prefix}${options.name} extends HTMLElement {
         ${options.observe ? options.observe : ''}
         this.builder = ${options.builder}
         this.state = ${options.state}
+        this.postBuild = ${options.postBuild ? options.postBuild : () => {}} 
         this.props = {}
         this.attachShadow({ mode: 'open' });
         this.build()
@@ -460,6 +466,7 @@ class ${options.prefix}${options.name} extends HTMLElement {
     build(){
       this.props = captureProps(this)
       this.shadowRoot.innerHTML = this.builder(this.state, this.props)
+      this.postBuild(this.state, this.props)
     }
 
     setState(newState) {
