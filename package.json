@@ -1,20 +1,20 @@
 {
-    "name": "mercedui",
-    "version": "1.2.7",
-    "description": "## By Alex Merced of AlexMercedCoder.com",
-    "main": "UINPM.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/AlexMercedCoder/MercedUI.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/AlexMercedCoder/MercedUI/issues"
-    },
-    "homepage": "https://github.com/AlexMercedCoder/MercedUI#readme"
+  "name": "mercedui",
+  "version": "1.2.8",
+  "description": "## By Alex Merced of AlexMercedCoder.com",
+  "main": "UINPM.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexMercedCoder/MercedUI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexMercedCoder/MercedUI/issues"
+  },
+  "homepage": "https://github.com/AlexMercedCoder/MercedUI#readme"
 }

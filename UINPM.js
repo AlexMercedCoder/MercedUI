@@ -562,7 +562,7 @@ const quickComponent = (
 // $M function abbreviations
 ///////////////////////////////
 
-$m = {
+const $m = {
     select: (q) => {
         return document.querySelector(q);
     },
@@ -596,7 +596,7 @@ $m = {
 // $s shadowRoot function abbreviations
 ///////////////////////////////
 
-$s = {
+const $s = {
     select: (e, q) => {
         return e.shadowRoot.querySelector(q);
     },
