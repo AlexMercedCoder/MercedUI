@@ -4,21 +4,23 @@
 
 ![mui](https://i.imgur.com/Jp894lv.png)
 
-If you just wants a simpler way to create Web Components, try out simple components at https://github.com/AlexMercedCoder/simpleComponents_
-
 If you prefer defining your components via classes, MercedElement is a base class easily building components: https://github.com/AlexMercedCoder/MercedElement
 
-_MercedUI has simpleComponent and MercedElement built but if you only wanted those features you can use the smaller libraries above_
+_MercedUI has MercedElement built but if you only wanted the base class s you can use the smaller library above_
 
 ## About
 
 The MercedUI Library creates some basic web components for assembling a userUI and some helper functions to help in creating a UI without having to increase your bundlesize by bringing a large UI library like Angular and React.
 
-CDN Link: http://www.alexmercedcoder.com/UI.js (11kb)
+CDN Link: https://res.cloudinary.com/dithdroai/raw/upload/v1609694139/libraries/UI_gvselp.js (11kb)
 
-CDN Link (ES 6 MODULE VERSION): http://www.alexmercedcoder.com/MUIMODULE.js (13 kb)
+CDN Link (ES 6 MODULE VERSION): https://res.cloudinary.com/dithdroai/raw/upload/v1609694139/libraries/MUIMODULE_q78isu.js (13 kb)
 
-CDN Link (Node MODULE.Exports VERSION): http://www.alexmercedcoder.com/UINPM.js (14 kb)
+**NPM** 
+
+- Webpack build generator ```npx create-mercedui-app projectName```
+
+- library to create custom build ```npm install mercedui```
 
 Youtube Tutorials: https://www.youtube.com/playlist?list=PLY6oTPmKnKbYrP3DfCUTYYADu0IT9DRZZ
 
@@ -27,7 +29,7 @@ Youtube Tutorials: https://www.youtube.com/playlist?list=PLY6oTPmKnKbYrP3DfCUTYY
 ### CDN
 
 ```
-script src="http://www.alexmercedcoder.com/UI.js" charset="utf-8" defer></script>
+script src="https://res.cloudinary.com/dithdroai/raw/upload/v1609694139/libraries/UI_gvselp.js" charset="utf-8" defer></script>
 ```
 
 ### NPM
@@ -53,7 +55,7 @@ index.html
 app.js
 
 ```
-import {MercedElement, $m, $s, FormTool} from "http://www.alexmercedcoder.com/MUIMODULE.js"
+import {MercedElement, $m, $s, FormTool} from "https://res.cloudinary.com/dithdroai/raw/upload/v1609694139/libraries/MUIMODULE_q78isu.js"
 ```
 
 ## Classes
